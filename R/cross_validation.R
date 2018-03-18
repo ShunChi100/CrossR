@@ -1,5 +1,6 @@
 #' cross_validation: Implement k-fold cross validation, with specified k, returning the scores
 #' for each fold.
+#'
 #' @importFrom stats cor predict lm
 #'
 #' @param X features data frame
@@ -80,6 +81,7 @@ cross_validation <- function(X, y, k = 3, shuffle = TRUE, random_state = 0) {
 
 
 # helper function
+
 #' gen_data(): returns data X, y for testing.
 #' @import dplyr
 #' @importFrom stats rnorm
@@ -110,43 +112,4 @@ gen_data <- function(N, perfect = FALSE){
   }
   y <- dat[,'y']
   return(list(X, y))
-}
-
-
-#' get_nrows(): returns the number of rows of a dataframe or the length of an atomic vector.
-#'
-#' @param data a dataframe or an atomic vector,
-#' @return number of observations
-#'
-#' @export
-#'
-#' @examples
-#' nrows = get_nrows(1:10)
-#' nrows = get_nrows(mtcars)
-#'
-get_nrows <- function(data){
-  if (is.data.frame(data)){
-    return(dim(data)[1])
-  }else{
-    return(length(data))
-  }
-}
-
-#' get_ncols(): returns the number of columns of data.
-#'
-#' @param data a dataframe or an atomic vector,
-#' @return number of observations
-#'
-#' @export
-#'
-#' @examples
-#' ncols = get_ncols(1:10)
-#' ncols = get_ncols(mtcars)
-#'
-get_ncols <- function(data){
-  if (is.data.frame(data)){
-    return(dim(data)[2])
-  }else{
-    return(1)
-  }
 }
